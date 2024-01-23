@@ -71,3 +71,14 @@ def items_create(name, brand, size, color, fit, category_id):
     ).fetchone()
     conn.commit()
     return dict(row)
+
+def items_find_by_id(id):
+    conn = connect_to_db()
+    row = conn.execute(
+        """
+        SELECT * FROM items
+        WHERE id = ?
+        """,
+        id,
+    ).fetchone()
+    return dict(row)
